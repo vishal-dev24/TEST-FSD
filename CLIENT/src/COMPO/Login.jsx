@@ -13,10 +13,25 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('https://test-fsd.onrender.com/login', formData, { withCredentials: true })
-        setFormData({ email: '', password: '', })
-        navigate('/profile')
+        try {
+            const res = await axios.post(
+                'https://test-fsd.onrender.com/login',
+                formData,
+                { withCredentials: true }
+            );
+
+            if (res.status === 200) {
+                setFormData({ email: '', password: '' });
+                navigate('/profile');  // only on success
+            } else {
+                alert("Login failed");
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Login failed");
+        }
     }
+
 
     return (
         <div className='min-h-screen flex justify-center items-start bg-gray-900 text-gray-100 '>
