@@ -25,25 +25,38 @@ app.post('/register', upload.single('image'), async (req, res) => {
         bcrypt.hash(password, salt, async (err, hash) => {
             const CU = await userModel.create({ username, email, password: hash, image: imagefile })
             const token = jwt.sign({ email: email, userid: CU._id }, "shhh")
-            res.cookie('token', token)
-            res.json()
-            console.log("hmmmmmmmm", { CU })
+
+            res.cookie("token", token, {
+                httpOnly: true,
+                secure: true,
+                sameSite: "none",
+            })
+            res.json({ message: "registered", CU })
         })
     })
 })
+
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const user = await userModel.findOne({ email })
     if (!user) return res.json('user not found')
+
     bcrypt.compare(password, user.password, async (err, result) => {
         if (result) {
             const token = jwt.sign({ email: email, userid: user._id }, "shhh")
-            res.cookie('token', token)
-            res.json()
-            console.log("hmmmmminggg loginnnnn", { user })
-        } else return res.json("hmmmmminggg no")
+
+            res.cookie("token", token, {
+                httpOnly: true,
+                secure: true,
+                sameSite: "none",
+            })
+            res.json({ message: "logged_in", user })
+        } else return res.json("wrong password")
     })
 })
+
+
+
 function isLoggedIn(req, res, next) {
     const token = req.cookies.token;
     if (!token) return res.redirect('/login')
