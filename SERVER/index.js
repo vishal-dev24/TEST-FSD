@@ -10,7 +10,24 @@ const cors = require('cors')
 const path = require('path')
 app.use(cookieParser());
 app.use(express.json())
-app.use(cors({ origin: 'https://test-fsd.onrender.com', credentials: true }))
+const allowedOrigins = [
+    "https://test-fsd.onrender.com",
+    "https://test-fsd-1.onrender.com"
+];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        // allow requests with no origin (like Postman)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = 'CORS policy: Not allowed';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
+    credentials: true
+}));
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 // Define routes
