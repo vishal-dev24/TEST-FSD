@@ -13,7 +13,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:3000/login', formData, { withCredentials: true })
+        await axios.post('https://test-fsd.onrender.com/login', formData, { withCredentials: true })
         setFormData({ email: '', password: '', })
         navigate('/profile')
     }

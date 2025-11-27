@@ -9,7 +9,7 @@ const Profile = () => {
 
     const fetchUser = async () => {
         try {
-            const res = await axios.get('http://localhost:3000/profile', { withCredentials: true })
+            const res = await axios.get('https://test-fsd.onrender.com/profile', { withCredentials: true })
             setUser(res.data)
             setPosts(res.data.posts)
         } catch (error) {
@@ -23,12 +23,12 @@ const Profile = () => {
     }, [])
 
     const handleDelete = async (postId) => {
-        await axios.delete(`http://localhost:3000/delete/${postId}`, { withCredentials: true });
+        await axios.delete(`https://test-fsd.onrender.com/delete/${postId}`, { withCredentials: true });
         setPosts(posts.filter(post => post._id !== postId))
     };
 
     const handleLogout = async () => {
-        await axios.get('http://localhost:3000/logout', { withCredentials: true })
+        await axios.get('https://test-fsd.onrender.com/logout', { withCredentials: true })
         navigate('/login')
     }
 
@@ -43,7 +43,7 @@ const Profile = () => {
                         <>
                             <div className="w-full md:w-1/3 flex justify-center">
                                 <img
-                                    src={`http://localhost:3000/uploads/${user.image}`}
+                                    src={`https://test-fsd.onrender.com/uploads/${user.image}`}
                                     className="w-32 h-32 object-cover border-4 border-cyan-700 rounded-full shadow-lg"
                                 />
                             </div>
@@ -85,7 +85,7 @@ const Profile = () => {
 
                             {/* Post Image */}
                             <img
-                                src={`http://localhost:3000/uploads/${post.image}`}
+                                src={`https://test-fsd.onrender.com/uploads/${post.image}`}
                                 className="w-full object-cover rounded-b-none"
                             />
 

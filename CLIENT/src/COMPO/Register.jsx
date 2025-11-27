@@ -18,7 +18,7 @@ const Register = () => {
         data.append("email", formData.email)
         data.append("password", formData.password)
         data.append("image", formData.image)
-        await axios.post('http://localhost:3000/register', data, { withCredentials: true })
+        await axios.post('https://test-fsd.onrender.com/register', data, { withCredentials: true })
         setFormData({ username: '', email: '', password: '', image: null })
         navigate('/login')
     }
