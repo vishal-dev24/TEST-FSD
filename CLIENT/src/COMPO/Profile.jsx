@@ -9,7 +9,7 @@ const Profile = () => {
 
     const fetchUser = async () => {
         try {
-            const res = await axios.get('http://localhost:3000/profile', { withCredentials: true })
+            const res = await axios.get('https://test-fsd-1.onrender.com/profile', { withCredentials: true })
             setUser(res.data)
             setPosts(res.data.posts)
         } catch {
@@ -23,12 +23,12 @@ const Profile = () => {
     }, [])
 
     const handleDelete = async (postId) => {
-        await axios.delete(`http://localhost:3000/delete/${postId}`, { withCredentials: true });
+        await axios.delete(`https://test-fsd-1.onrender.com/delete/${postId}`, { withCredentials: true });
         setPosts(posts.filter(post => post._id !== postId))
     };
 
     const handleLogout = async () => {
-        await axios.get('http://localhost:3000/logout', { withCredentials: true })
+        await axios.get('https://test-fsd-1.onrender.com/logout', { withCredentials: true })
         navigate('/login')
     }
 

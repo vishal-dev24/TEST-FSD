@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(cors({ origin: 'https://test-fsd-1.onrender.com', credentials: true }));
 
 // REGISTER
 app.post('/register', upload.single('image'), async (req, res) => {

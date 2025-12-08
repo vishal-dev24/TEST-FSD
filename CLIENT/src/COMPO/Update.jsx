@@ -13,7 +13,7 @@ const Update = () => {
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/getPost/${id}`)
+        axios.get(`https://test-fsd-1.onrender.com/getPost/${id}`)
             .then(({ data }) => setFormData({ title: data.title, image: data.image || null }))
     }, [id])
 
@@ -22,7 +22,7 @@ const Update = () => {
         const data = new FormData();
         data.append('title', formData.title)
         data.append('image', formData.image)
-        await axios.put(`http://localhost:3000/update/${id}`, data, { withCredentials: true })
+        await axios.put(`https://test-fsd-1.onrender.com/update/${id}`, data, { withCredentials: true })
         setFormData({ title: '', image: null, })
         navigate('/profile')
     }
