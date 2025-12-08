@@ -16,7 +16,7 @@ const AddTask = () => {
         const data = new FormData();
         data.append('title', formData.title)
         data.append('image', formData.image)
-        await axios.post('https://test-fsd.onrender.com/create', data, { withCredentials: true })
+        await axios.post('http://localhost:3000/create', data, { withCredentials: true })
         setFormData({ title: '', image: null, })
         navigate('/profile')
     }
@@ -31,7 +31,7 @@ const AddTask = () => {
                 <form onSubmit={handleSubmit} className='flex justify-center items-center flex-col'>
                     <input className='px-4 py-3 m-2 text-lg placeholder:text-gray-200 font-semibold hover:border-teal-600 bg-slate-700 capitalize focus:outline-none border border-slate-400 rounded-lg bg-slate-200 w-full' onChange={handleChange} value={formData.title} type="text" name="title" placeholder='enter your title' required />
                     <input className='px-3 py-2 m-2 text-lg placeholder:text-gray-200 font-semibold hover:border-teal-600 capitalize focus:outline-none border border-slate-400 rounded-lg bg-slate-700 w-full
-                     file:mr-3 file:px-4 file:py-2 file:text-wsm file:rounded-full file:border-1 file:border-white file:bg-slate-900 file:text-white hover:file:bg-cyan-600    ' onChange={handleChange} type="file" name="image" required />
+                     file:mr-3 file:px-4 file:py-2 file:text-wsm file:rounded-full file:border-1 file:border-white file:bg-slate-900 file:text-white hover:file:bg-cyan-600' onChange={handleChange} type="file" name="image" required />
                     <button className='p-2.5 m-2 text-xl text-gray-200 font-semibold hover:bg-slate-200 capitalize border-2 border-slate-400 rounded-lg bg-slate-900 w-full' type='submit'>Submit</button>
                 </form>
             </div>

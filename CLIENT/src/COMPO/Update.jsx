@@ -13,7 +13,7 @@ const Update = () => {
     }
 
     useEffect(() => {
-        axios.get(`https://test-fsd.onrender.com/getPost/${id}`)
+        axios.get(`http://localhost:3000/getPost/${id}`)
             .then(({ data }) => setFormData({ title: data.title, image: data.image || null }))
     }, [id])
 
@@ -22,10 +22,11 @@ const Update = () => {
         const data = new FormData();
         data.append('title', formData.title)
         data.append('image', formData.image)
-        await axios.put(`https://test-fsd.onrender.com/update/${id}`, data, { withCredentials: true })
+        await axios.put(`http://localhost:3000/update/${id}`, data, { withCredentials: true })
         setFormData({ title: '', image: null, })
         navigate('/profile')
     }
+
     return (
         <div className='min-h-screen flex justify-center items-start bg-gray-900 text-gray-100 p-6'>
             <div className='w-full max-w-lg p-8 mt-10 bg-white/10 rounded-lg shadow-lg border border-slate-600'>
@@ -43,18 +44,16 @@ const Update = () => {
                         placeholder='Enter your title'
                         required
                     />
-                    <div className='flex justify-start ms-1'>
-                        {formData.image && (
-                            <img className='w-32 h-32 rounded-lg' src={`https://test-fsd.onrender.com/uploads/${formData.image}`} alt="Uploaded" />
-                        )}
-                    </div>
+
+
+
                     <input
                         className='px-3 py-2 text-lg placeholder:text-gray-200 font-semibold hover:border-teal-600 capitalize focus:outline-none border border-slate-400 rounded-lg bg-slate-700 w-full file:mr-3 file:px-4 file:py-2 file:text-sm file:rounded-full file:border-1 file:border-white file:bg-cyan-700 file:text-white hover:file:bg-cyan-600'
                         onChange={handleChange}
                         type="file"
                         name="image"
-                        required
                     />
+
                     <button
                         className='p-3 text-xl text-gray-200 font-semibold hover:bg-slate-800 capitalize border-2 border-slate-400 rounded-lg bg-slate-900 w-full'
                         type='submit'
@@ -65,7 +64,6 @@ const Update = () => {
             </div>
         </div>
     )
-
 }
 
 export default Update
