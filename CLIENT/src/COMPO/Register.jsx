@@ -15,7 +15,7 @@ const Register = () => {
         e.preventDefault();
         const data = new FormData();
         Object.keys(formData).forEach(key => data.append(key, formData[key]));
-        await axios.post('https://test-fsd-1.onrender.com/register', data, { withCredentials: true });
+        await axios.post('https://test-fsd.onrender.com/register', data, { withCredentials: true });
         setFormData({ username: '', email: '', password: '', image: null });
         navigate('/login');
     }

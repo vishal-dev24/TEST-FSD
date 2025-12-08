@@ -16,7 +16,7 @@ const AddTask = () => {
         const data = new FormData();
         data.append('title', formData.title)
         data.append('image', formData.image)
-        await axios.post('https://test-fsd-1.onrender.com/create', data, { withCredentials: true })
+        await axios.post('https://test-fsd.onrender.com/create', data, { withCredentials: true })
         setFormData({ title: '', image: null, })
         navigate('/profile')
     }
